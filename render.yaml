@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: fomo-dagou-paper
+    runtime: python
+    plan: 0.5c-512mb
+    numInstances: 1
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py paper-auto
+    healthCheckPath: /healthz
+    autoDeployTrigger: 'off'
+    disk:
+      name: fomo-dagou-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: STATE_FILE
+        value: /var/data/state.json
+      - key: VIRTUAL_BANKROLL_USD
+        value: "100"
+      - key: AUTO_TRADE_USD
+        value: "10"
+      - key: MAX_AUTO_POSITIONS
+        value: "5"
+      - key: SCAN_INTERVAL_SEC
+        value: "900"
+      - key: DASHBOARD_USERNAME
+        sync: false
+      - key: DASHBOARD_PASSWORD
+        sync: false

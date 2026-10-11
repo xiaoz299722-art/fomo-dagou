@@ -1,0 +1,19 @@
+# Secrets and environment files
+.dashboard_auth
+.env
+.env.*
+!.env.example
+
+# Local and persistent paper-trading state (never commit)
+state.json
+state.json.*
+positions.json
+
+# Python artifacts
+.venv/
+__pycache__/
+*.py[cod]
+
+# Logs and editor files
+*.log
+.DS_Store
